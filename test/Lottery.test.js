@@ -16,6 +16,11 @@ beforeEach(async () => {
   //deploy statement takes bytecode
   .deploy({ data: evm.bytecode.object })
   //send to test network, specify account used for deployment + gas
-  .send({ from: accounts[0], gas '1000000' });
-}
- 
+  .send({ from: accounts[0], gas: '1000000' });
+});
+
+ describe('Lottery Contract', () => {
+   it('deploys a contract', () => {
+     assert.ok(lottery.options.address);
+   });
+ });

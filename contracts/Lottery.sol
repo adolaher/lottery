@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.9;
+
 
 contract Lottery {
     address public manager;
     address payable[] public players;
-//replace constructor function with constructor keyword
-    constructor {
+
+    constructor() {
         manager = msg.sender;
     }
 
@@ -15,8 +15,8 @@ contract Lottery {
         players.push(payable(msg.sender));
     }
 
-    function random() private view returns(uint){
-        return uint(keccak256(abi.encodePacked(block.difficulty, now, players)));
+    function random() private view returns(uint) {
+        return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players)));
     }
 
     function pickWinner() public restricted {
@@ -33,4 +33,4 @@ contract Lottery {
     function getPlayers() public view returns (address payable[] memory) {
         return players;
     }
-};
+}
